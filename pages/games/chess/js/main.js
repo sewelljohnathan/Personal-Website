@@ -1,0 +1,178 @@
+
+import Square from "./grid";
+import pieces from "./pieces";
+
+// Initialize board
+let turnBoard = true;
+let turn = 0;
+
+// Clicking
+let squares = [];
+let selectedR;
+let selectedC;
+let selectedSquare = null;
+
+let mouseX;
+let mouseY;
+
+function init(ctx) {
+
+    // Generate grid
+    for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+
+            let color;
+            if ((row + col+1) % 2 == 1) {
+                color = "white";
+            } else {
+                color = "black";
+            }
+
+            squares.push(new Square(color))
+        }
+    }
+
+    // White
+    squares[1*8 + 0].piece = new pieces.Pawn(0);
+    squares[1*8 + 1].piece = new pieces.Pawn(0);
+    squares[1*8 + 2].piece = new pieces.Pawn(0);
+    squares[1*8 + 3].piece = new pieces.Pawn(0);
+    squares[1*8 + 4].piece = new pieces.Pawn(0);
+    squares[1*8 + 5].piece = new pieces.Pawn(0);
+    squares[1*8 + 6].piece = new pieces.Pawn(0);
+    squares[1*8 + 7].piece = new pieces.Pawn(0);
+    squares[0*8 + 0].piece = new pieces.Rook(0);
+    squares[0*8 + 7].piece = new pieces.Rook(0);
+    squares[0*8 + 1].piece = new pieces.Knight(0);
+    squares[0*8 + 6].piece = new pieces.Knight(0);
+    squares[0*8 + 2].piece = new pieces.Bishop(0);
+    squares[0*8 + 5].piece = new pieces.Bishop(0);
+    squares[0*8 + 3].piece = new pieces.King(0);
+    squares[0*8 + 4].piece = new pieces.Queen(0);
+
+    // Black
+    squares[6*8 + 0].piece = new pieces.Pawn(1);
+    squares[6*8 + 1].piece = new pieces.Pawn(1);
+    squares[6*8 + 2].piece = new pieces.Pawn(1);
+    squares[6*8 + 3].piece = new pieces.Pawn(1);
+    squares[6*8 + 4].piece = new pieces.Pawn(1);
+    squares[6*8 + 5].piece = new pieces.Pawn(1);
+    squares[6*8 + 6].piece = new pieces.Pawn(1);
+    squares[6*8 + 7].piece = new pieces.Pawn(1);
+    squares[7*8 + 0].piece = new pieces.Rook(1);
+    squares[7*8 + 7].piece = new pieces.Rook(1);
+    squares[7*8 + 1].piece = new pieces.Knight(1);
+    squares[7*8 + 6].piece = new pieces.Knight(1);
+    squares[7*8 + 2].piece = new pieces.Bishop(1);
+    squares[7*8 + 5].piece = new pieces.Bishop(1);
+    squares[7*8 + 3].piece = new pieces.King(1);
+    squares[7*8 + 4].piece = new pieces.Queen(1);
+
+    ctx.canvas.onmousemove = (e) => {
+        mouseX = e.clientX - ctx.canvas.getBoundingClientRect().x;
+        mouseY = e.clientY - ctx.canvas.getBoundingClientRect().y;
+    }
+
+    ctx.canvas.onmousedown = (e) => {
+
+        console.log(true);
+
+        squares.forEach((s) => {
+            s.isSelected = false;
+        });
+    
+        let targetR;
+        if (turn === 0 || !turnBoard) {
+            targetR = 7 - Math.floor(mouseY / (600/8));
+        } else {
+            targetR = Math.floor(mouseY / (600/8));
+        }
+        
+        let targetC;
+        if (turn === 0 || !turnBoard) {
+            targetC = Math.floor(mouseX / (600/8));
+        } else {
+            targetC = 7 - Math.floor(mouseX / (600/8));
+        }
+        let targetSquare = squares[targetR*8 + targetC];
+        let targetPiece = targetSquare.piece;
+    
+        if (selectedSquare === null) {
+            if (targetPiece !== null && targetPiece.player === turn) {
+                selectedR = targetR;
+                selectedC = targetC;
+                selectedSquare = targetSquare;
+                squares[targetR*8 + targetC].isSelected = true;
+            }
+        } else {
+            let selectedPiece = selectedSquare.piece;
+    
+            // Check to make sure the move was legal
+            if (!(targetR - selectedR === 0 && targetC - selectedC === 0) && // Not move to same square
+                !(targetPiece !== null && targetPiece.player === turn) && // Not move to overlap another piece of same player
+                selectedPiece.canMove(selectedR, selectedC, targetR, targetC, squares)) { // Not illegal move
+                
+                selectedSquare.piece = null;
+                targetSquare.piece = selectedPiece;
+    
+                // Check to make sure the move didnt go to check
+                let isInCheck = false;
+                let kingR;
+                let kingC;
+                for (let row = 0; row < 8; row++) {
+                    for (let col = 0; col < 8; col++) {
+                        let curPiece = squares[row*8 + col].piece;
+                        if (curPiece !== null && curPiece.player === turn && (curPiece instanceof pieces.King)) {
+                            kingR = row;
+                            kingC = col;
+                        }
+                    }
+                }
+                for (let row = 0; row < 8; row++) {
+                    for (let col = 0; col < 8; col++) {
+                        let curPiece = squares[row*8 + col].piece;
+                        if (curPiece === null) {
+                            continue;
+                        }
+                        if (curPiece.player !== turn && curPiece.canMove(row, col, kingR, kingC, squares)) {
+                            isInCheck = true;
+                        }
+                    }
+                }
+                // Reverse Move
+                if (isInCheck) {
+                    selectedSquare.piece = selectedPiece;
+                    targetSquare.piece = targetPiece;
+                } else {
+                    // Turn change
+                    selectedPiece.hasMoved = true;
+                    turn = turn === 0? 1 : 0;
+                } 
+            }
+    
+            selectedSquare = null;
+        }
+    }
+}
+
+function run(ctx) {
+
+    for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+            ctx.save();
+
+            if (turn === 0 || !turnBoard) {
+                ctx.translate(col*Square.size, (7-row)*Square.size);
+            } else {
+                ctx.translate((7-col)*Square.size, (row)*Square.size);
+            }       
+
+            squares[row*8 + col].draw(ctx);
+
+            ctx.restore();
+        }
+    }
+}
+
+const funcs = { run: run, init: init };
+export default funcs;

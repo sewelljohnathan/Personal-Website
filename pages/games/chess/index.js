@@ -13,7 +13,7 @@ export default function Home() {
         <div>
             <Head>
             <title>Chess</title>
-            <link rel="icon" href="favicon.ico" />
+            <link rel="icon" href="../favicon.ico" />
             </Head>
             <Canvas draw={draw} init={init} width="600" height="600" />
         </div>

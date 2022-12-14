@@ -1,6 +1,6 @@
 
 import Head from "next/head";
-import Canvas from "../canvas";
+import Canvas from "/components/canvas";
 import { run, init } from "./js/main";
 
 export default function Home() {

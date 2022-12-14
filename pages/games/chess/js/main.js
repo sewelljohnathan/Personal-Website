@@ -1,6 +1,6 @@
 
-import Square from "./grid";
-import pieces from "./pieces";
+import { Square } from "./grid";
+import { Pawn, Rook, Knight, Bishop, King, Queen } from "./pieces";
 
 // Initialize board
 let turnBoard = true;
@@ -33,40 +33,40 @@ function init(ctx) {
     }
 
     // White
-    squares[1*8 + 0].piece = new pieces.Pawn(0);
-    squares[1*8 + 1].piece = new pieces.Pawn(0);
-    squares[1*8 + 2].piece = new pieces.Pawn(0);
-    squares[1*8 + 3].piece = new pieces.Pawn(0);
-    squares[1*8 + 4].piece = new pieces.Pawn(0);
-    squares[1*8 + 5].piece = new pieces.Pawn(0);
-    squares[1*8 + 6].piece = new pieces.Pawn(0);
-    squares[1*8 + 7].piece = new pieces.Pawn(0);
-    squares[0*8 + 0].piece = new pieces.Rook(0);
-    squares[0*8 + 7].piece = new pieces.Rook(0);
-    squares[0*8 + 1].piece = new pieces.Knight(0);
-    squares[0*8 + 6].piece = new pieces.Knight(0);
-    squares[0*8 + 2].piece = new pieces.Bishop(0);
-    squares[0*8 + 5].piece = new pieces.Bishop(0);
-    squares[0*8 + 3].piece = new pieces.King(0);
-    squares[0*8 + 4].piece = new pieces.Queen(0);
+    squares[1*8 + 0].piece = new Pawn(0);
+    squares[1*8 + 1].piece = new Pawn(0);
+    squares[1*8 + 2].piece = new Pawn(0);
+    squares[1*8 + 3].piece = new Pawn(0);
+    squares[1*8 + 4].piece = new Pawn(0);
+    squares[1*8 + 5].piece = new Pawn(0);
+    squares[1*8 + 6].piece = new Pawn(0);
+    squares[1*8 + 7].piece = new Pawn(0);
+    squares[0*8 + 0].piece = new Rook(0);
+    squares[0*8 + 7].piece = new Rook(0);
+    squares[0*8 + 1].piece = new Knight(0);
+    squares[0*8 + 6].piece = new Knight(0);
+    squares[0*8 + 2].piece = new Bishop(0);
+    squares[0*8 + 5].piece = new Bishop(0);
+    squares[0*8 + 3].piece = new King(0);
+    squares[0*8 + 4].piece = new Queen(0);
 
     // Black
-    squares[6*8 + 0].piece = new pieces.Pawn(1);
-    squares[6*8 + 1].piece = new pieces.Pawn(1);
-    squares[6*8 + 2].piece = new pieces.Pawn(1);
-    squares[6*8 + 3].piece = new pieces.Pawn(1);
-    squares[6*8 + 4].piece = new pieces.Pawn(1);
-    squares[6*8 + 5].piece = new pieces.Pawn(1);
-    squares[6*8 + 6].piece = new pieces.Pawn(1);
-    squares[6*8 + 7].piece = new pieces.Pawn(1);
-    squares[7*8 + 0].piece = new pieces.Rook(1);
-    squares[7*8 + 7].piece = new pieces.Rook(1);
-    squares[7*8 + 1].piece = new pieces.Knight(1);
-    squares[7*8 + 6].piece = new pieces.Knight(1);
-    squares[7*8 + 2].piece = new pieces.Bishop(1);
-    squares[7*8 + 5].piece = new pieces.Bishop(1);
-    squares[7*8 + 3].piece = new pieces.King(1);
-    squares[7*8 + 4].piece = new pieces.Queen(1);
+    squares[6*8 + 0].piece = new Pawn(1);
+    squares[6*8 + 1].piece = new Pawn(1);
+    squares[6*8 + 2].piece = new Pawn(1);
+    squares[6*8 + 3].piece = new Pawn(1);
+    squares[6*8 + 4].piece = new Pawn(1);
+    squares[6*8 + 5].piece = new Pawn(1);
+    squares[6*8 + 6].piece = new Pawn(1);
+    squares[6*8 + 7].piece = new Pawn(1);
+    squares[7*8 + 0].piece = new Rook(1);
+    squares[7*8 + 7].piece = new Rook(1);
+    squares[7*8 + 1].piece = new Knight(1);
+    squares[7*8 + 6].piece = new Knight(1);
+    squares[7*8 + 2].piece = new Bishop(1);
+    squares[7*8 + 5].piece = new Bishop(1);
+    squares[7*8 + 3].piece = new King(1);
+    squares[7*8 + 4].piece = new Queen(1);
 
     ctx.canvas.onmousemove = (e) => {
         mouseX = e.clientX - ctx.canvas.getBoundingClientRect().x;
@@ -120,7 +120,7 @@ function init(ctx) {
                 for (let row = 0; row < 8; row++) {
                     for (let col = 0; col < 8; col++) {
                         let curPiece = squares[row*8 + col].piece;
-                        if (curPiece !== null && curPiece.player === turn && (curPiece instanceof pieces.King)) {
+                        if (curPiece !== null && curPiece.player === turn && (curPiece instanceof King)) {
                             kingR = row;
                             kingC = col;
                         }

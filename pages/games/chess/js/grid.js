@@ -1,6 +1,5 @@
 
-
-export default class Square {
+class Square {
 
     static size = 600/8;
 
@@ -27,3 +26,4 @@ export default class Square {
     }
 }
 
+export { Square }

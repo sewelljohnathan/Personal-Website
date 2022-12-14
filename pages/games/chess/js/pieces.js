@@ -1,5 +1,5 @@
 
-import Square from "./grid";
+import { Square } from "./grid";
 
 class Piece {
     constructor(player) {
@@ -146,5 +146,11 @@ class King extends Piece {
     }
 }
 
-const pieces = { Pawn: Pawn, Rook: Rook, Knight: Knight, Bishop: Bishop, King: King, Queen: Queen };
-export default pieces;
+export {
+    Pawn,
+    Rook,
+    Knight,
+    Bishop,
+    King,
+    Queen
+}

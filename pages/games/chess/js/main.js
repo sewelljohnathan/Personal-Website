@@ -75,8 +75,6 @@ function init(ctx) {
 
     ctx.canvas.onmousedown = (e) => {
 
-        console.log(true);
-
         squares.forEach((s) => {
             s.isSelected = false;
         });

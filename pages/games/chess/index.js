@@ -1,12 +1,12 @@
 
 import Head from "next/head";
 import Canvas from "../canvas";
-import funcs from "./js/main";
+import { run, init } from "./js/main";
 
 export default function Home() {
 
     const draw = (ctx, frameCount) => {
-        funcs.run(ctx);
+        run(ctx);
     }
 
     return (
@@ -15,7 +15,7 @@ export default function Home() {
             <title>Chess</title>
             <link rel="icon" href="favicon.ico" />
             </Head>
-            <Canvas draw={draw} init={funcs.init} width="600" height="600" />
+            <Canvas draw={draw} init={init} width="600" height="600" />
         </div>
     );
 }

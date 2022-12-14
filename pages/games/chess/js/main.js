@@ -172,5 +172,7 @@ function run(ctx) {
     }
 }
 
-const funcs = { run: run, init: init };
-export default funcs;
+export {
+    run,
+    init,
+}

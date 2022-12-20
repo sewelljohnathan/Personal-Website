@@ -1,4 +1,11 @@
-.main {
+
+.background {
+    background: radial-gradient(ellipse at bottom, #1f2f3f 0%, #000000 100%);
     min-height: 100vh;
-    padding: 1em;
+}
+.header {
+    color: rgba(245, 245, 245, 0.75);
+}
+.footer {
+    color: rgba(245, 245, 245, 0.75);
 }

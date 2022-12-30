@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import styles from "./Home.module.css"
-import "bootstrap/dist/css/bootstrap.css"
+import AuthBtns from '../components/AuthBtns';
 
-export default function Home() {
+function Home() {
+
     return (
         <div>
             <Head>
@@ -11,71 +12,81 @@ export default function Home() {
                 <link rel="icon" href="favicon.ico" />
             </Head>
             <div class={styles.background}>
-
                 <div class="container pt-5">
-                    <h1 class={styles.header}>Johnathan Sewell</h1>
+                    <div class="row">
+                        <div class="col">
+                            <h1 class={styles.header}>Johnathan Sewell</h1>
+                        </div>
+                        <div class="col">
+                            <AuthBtns />
+                        </div>
+                    </div>
+                </div>     
+                <div class="container pt-5">
+                    <div class="row">
+                        <div class="col">
+                            <div class="container pt-5">
+                                <h2 class={styles.header}>About Me</h2>
+                                <div class="card">
+                                    <div class="row g-0">
+                                        <div class="col-5">
+                                            <img src="/headshot.jpeg" class="img-fluid rounded-start"/>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Johnathan</h5>
+                                                <p class="card-text">I am a Computer Science student at the University of Central Florida.</p>
+                                                <p class="card-text">With over 7 years of experience in addition to formal education, I am knowledgeable in:</p>
+                                                <ul>
+                                                    <li>Python, C, JavaScript</li>
+                                                    <li>Relational and Document databases</li>
+                                                    <li>Data Structure and Algorithms</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="container pt-5">
+                                <h2 class={styles.header}>Where to Find Me</h2>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <img src="/github-mark.png" class="card-img-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">GitHub</h5>
+                                                <p class="card-text">Check out my professional and hobby projects</p>
+                                                <a href="https://github.com/sewelljohnathan" class="btn btn-primary">Go</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <img src="..." class="card-img-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">Upwork</h5>
+                                                <p class="card-text">Check out my work as a freelancer!</p>
+                                                <a href="https://www.upwork.com/freelancers/~01c9d420cb82322198" class="btn btn-primary">Go</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <img src="/linkedin-mark.png" class="card-img-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">LinkedIn</h5>
+                                                <p class="card-text">Check out my LinkedIn profile!</p>
+                                                <a href="https://www.linkedin.com/in/johnathan-sewell-0496121b7/" class="btn btn-primary">Go</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="container pt-5"><div class="row">
-                    <div class="col"><div class="container pt-5">
-                        <h2 class={styles.header}>About Me</h2>
-                        <div class="card">
-                            <div class="row g-0">
-                                <div class="col-5">
-                                    <img src="/headshot.jpeg" class="img-fluid rounded-start"/>
-                                </div>
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Johnathan</h5>
-                                        <p class="card-text">I am a Computer Science student at the University of Central Florida.</p>
-                                        <p class="card-text">With over 7 years of experience in addition to formal education, I am knowledgeable in:</p>
-                                        <ul>
-                                            <li>Python, C, JavaScript</li>
-                                            <li>Relational and Document databases</li>
-                                            <li>Data Structure and Algorithms</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div></div>
-                    <div class="col"><div class="container pt-5">
-                        <h2 class={styles.header}>Where to Find Me</h2>
-                        <div class="row">
-                            <div class="col">
-                                <div class="card">
-                                    <img src="/github-mark.png" class="card-img-top" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">GitHub</h5>
-                                        <p class="card-text">Check out my professional and hobby projects</p>
-                                        <a href="https://github.com/sewelljohnathan" class="btn btn-primary">Go</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card">
-                                    <img src="..." class="card-img-top" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Upwork</h5>
-                                        <p class="card-text">Check out my work as a freelancer!</p>
-                                        <a href="https://www.upwork.com/freelancers/~01c9d420cb82322198" class="btn btn-primary">Go</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card">
-                                    <img src="/linkedin-mark.png" class="card-img-top" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">LinkedIn</h5>
-                                        <p class="card-text">Check out my LinkedIn profile!</p>
-                                        <a href="https://www.linkedin.com/in/johnathan-sewell-0496121b7/" class="btn btn-primary">Go</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div></div>
-                </div></div>
-
                 <div class="container pt-5">
                     <h2 class={styles.header}>Past Projects</h2>
                     <div class="container">
@@ -123,19 +134,20 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                
                 </div>
-
-                <div class="container pt-5 pb-3"><div class="row">
-                    <div class="col">
-                        <p class={`text-start ${styles.footer}`}>Made by: Johnathan Sewell</p>
+                <div class="container pt-5 pb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p class={`text-start ${styles.footer}`}>Made by: Johnathan Sewell</p>
+                        </div>
+                        <div class="col">
+                            <p class={`text-end ${styles.footer}`}>Made with: Next.js and Bootstrap</p>
+                        </div>   
                     </div>
-                    <div class="col">
-                        <p class={`text-end ${styles.footer}`}>Made with: Next.js and Bootstrap</p>
-                    </div>   
-                </div></div>
-                
+                </div>
             </div>
         </div>
     )
 }
+
+export default Home

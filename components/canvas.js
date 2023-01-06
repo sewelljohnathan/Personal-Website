@@ -38,7 +38,7 @@ const Canvas = props => {
     }, [draw]);
 
     // Return html canvas element
-    return <canvas ref={canvasRef} width={width} height={height}/>
+    return <canvas ref={canvasRef} width={width} height={height} {...rest} />
 
 }
 

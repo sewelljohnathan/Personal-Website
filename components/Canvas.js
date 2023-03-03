@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from "react";
 
-const Canvas = props => {
+const UseCanvas = props => {
 
     const { draw, init, width, height, ...rest } = props
     const canvasRef = useRef(null);
@@ -42,4 +42,4 @@ const Canvas = props => {
 
 }
 
-export default Canvas;
+export default UseCanvas;
